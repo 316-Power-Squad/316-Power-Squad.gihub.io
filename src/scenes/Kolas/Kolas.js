@@ -3,7 +3,7 @@ import * as React from 'react';
 import { observer, inject } from 'mobx-react';
 import KolasStore from './KolasStore';
 import { Flex } from 'reflexbox';
-import { Table, Input, Select } from 'antd';
+import { Table, Input, Select, Row, Col, Card } from 'antd';
 import QualificationStore from 'stores/QualificationStore';
 import Layout from 'components/Layout';
 import styled from 'styled-components';
@@ -76,6 +76,37 @@ class Kolas extends React.Component<Props> {
               <Option value="womens">Women's</Option>
             </PaddedSelect>
           </InputRow>
+          <div style={{ background: '#ECECEC', padding: '30px' }}>
+            <Row gutter={16}>
+              <Col span={8}>
+                <Card
+                  title="Teams in Championship Meet"
+                  bordered={false}
+                  style={{ 'text-align': 'center' }}
+                >
+                  <h1>31</h1>
+                </Card>
+              </Col>
+              <Col span={8}>
+                <Card
+                  title="Auto Teams in Championship Meet"
+                  bordered={false}
+                  style={{ 'text-align': 'center' }}
+                >
+                  <h1>18</h1>
+                </Card>
+              </Col>
+              <Col span={8}>
+                <Card
+                  title="At Large Teams in Championship Meet"
+                  bordered={false}
+                  style={{ 'text-align': 'center' }}
+                >
+                  <h1>13</h1>
+                </Card>
+              </Col>
+            </Row>
+          </div>
           <FlexTable
             bordered
             title={() => 'Predicted at Large Bids'}

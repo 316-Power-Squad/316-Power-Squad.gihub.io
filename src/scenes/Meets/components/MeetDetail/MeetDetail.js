@@ -6,6 +6,7 @@ import { observer } from 'mobx-react';
 import { withRouter } from 'react-router';
 import styled from 'styled-components';
 import MeetDetailStore from './MeetDetailStore';
+import image from 'assets/placement.png';
 
 const TabPane = Tabs.TabPane;
 
@@ -82,12 +83,10 @@ class MeetDetail extends React.Component<Props> {
   render() {
     return (
       <Flex auto>
-        <Box w={[1, 3 / 4, 3 / 4]}>
-          {this.renderMeetContent()}
-        </Box>
+        <Box w={[1, 3 / 4, 3 / 4]}>{this.renderMeetContent()}</Box>
         <Box w={[1, 1 / 4, 1 / 4]}>
           <AddOrInfo auto align="center" justify="center">
-            Ad or More Info
+            <img src={image} alt="placements" width="250" />
           </AddOrInfo>
         </Box>
       </Flex>
@@ -105,7 +104,7 @@ const AddOrInfo = styled(Flex)`
   margin: 30px 30px 30px 0;
   height: 85%;
   background: #fff;
-  border: 1px solid gray;
+  border: 1px solid lightgray;
   border-radius: 4px;
   font-size: 20px;
 `;
