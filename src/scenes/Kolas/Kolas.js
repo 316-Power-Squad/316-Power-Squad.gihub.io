@@ -109,7 +109,7 @@ class Kolas extends React.Component<Props> {
           </div>
           <FlexTable
             bordered
-            title={() => 'Predicted at Large Bids'}
+            title={() => 'Predicted Bids'}
             dataSource={this.visibleTeams}
             columns={columns}
             pagination={{
