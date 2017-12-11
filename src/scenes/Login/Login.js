@@ -10,7 +10,7 @@ import { colors } from 'constants/styles';
 import LoginStore from './LoginStore';
 import UserStore from 'stores/UserStore';
 import UiStore from 'stores/UiStore';
-import banner from 'assets/banner.jpg';
+import banner from 'assets/banner2.jpg';
 import Input from 'components/Input';
 
 type Props = {
@@ -41,13 +41,19 @@ class Login extends React.Component<Props> {
     const { ui } = this.props;
     return (
       <FullHeight auto justify="center">
-        {ui.isDesktop &&
+        {ui.isDesktop && (
           <Banner justify="center" align="center" auto>
             <BannerImage src={banner} alt="banner" />
             <BannerTextContainer>
-              <BannerText>Welcome to AtLarge</BannerText>
+              <BannerText>
+                Kolas Calculator
+                <SmallBannerText>
+                  an online resource for Division I Cross Country teams and fans
+                </SmallBannerText>
+              </BannerText>
             </BannerTextContainer>
-          </Banner>}
+          </Banner>
+        )}
         <LoginForm mobile={!ui.isDesktop}>
           <Item column>
             <UserIcon type="user" style={{ fontSize: 60 }} />
@@ -68,8 +74,9 @@ class Login extends React.Component<Props> {
               icon="lock"
             />
           </Item>
-          {this.store.error &&
-            <StyledAlert message={this.store.error} type="error" />}
+          {this.store.error && (
+            <StyledAlert message={this.store.error} type="error" />
+          )}
           <Item>
             <Flex column auto>
               <Button type="primary" onClick={this.handleSubmit}>
@@ -122,7 +129,14 @@ const BannerText = styled.h1`
   font-size: 5rem;
 `;
 
-const CreateAccountLink = styled.a`margin-left: 6px;`;
+const SmallBannerText = styled.h5`
+  color: #fff;
+  font-size: 1rem;
+`;
+
+const CreateAccountLink = styled.a`
+  margin-left: 6px;
+`;
 
 const LoginForm = styled.div`
   display: flex;

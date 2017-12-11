@@ -3,7 +3,7 @@ import * as React from 'react';
 import { observer, inject } from 'mobx-react';
 import KolasStore from './KolasStore';
 import { Flex } from 'reflexbox';
-import { Table, Input, Select } from 'antd';
+import { Table, Input, Select, Row, Col, Card } from 'antd';
 import QualificationStore from 'stores/QualificationStore';
 import Layout from 'components/Layout';
 import styled from 'styled-components';
@@ -76,9 +76,40 @@ class Kolas extends React.Component<Props> {
               <Option value="womens">Women's</Option>
             </PaddedSelect>
           </InputRow>
+          <CardsContainer>
+            <Row gutter={16}>
+              <Col span={8}>
+                <Card
+                  title="Teams in Championship Meet"
+                  bordered={false}
+                  style={{ 'text-align': 'center' }}
+                >
+                  <h1>31</h1>
+                </Card>
+              </Col>
+              <Col span={8}>
+                <Card
+                  title="Auto Teams in Championship Meet"
+                  bordered={false}
+                  style={{ 'text-align': 'center' }}
+                >
+                  <h1>18</h1>
+                </Card>
+              </Col>
+              <Col span={8}>
+                <Card
+                  title="At Large Teams in Championship Meet"
+                  bordered={false}
+                  style={{ 'text-align': 'center' }}
+                >
+                  <h1>13</h1>
+                </Card>
+              </Col>
+            </Row>
+          </CardsContainer>
           <FlexTable
             bordered
-            title={() => 'Predicted at Large Bids'}
+            title={() => 'Predicted Bids'}
             dataSource={this.visibleTeams}
             columns={columns}
             pagination={{
@@ -90,6 +121,12 @@ class Kolas extends React.Component<Props> {
     );
   }
 }
+
+const CardsContainer = styled.div`
+  background: #ececec;
+  padding: 30px;
+  margin-bottom: 10px;
+`;
 
 const PaddedSelect = styled(Select)`
   margin-right: 10px;
