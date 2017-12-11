@@ -6,6 +6,7 @@ import { observer } from 'mobx-react';
 import { withRouter } from 'react-router';
 import styled from 'styled-components';
 import MeetDetailStore from './MeetDetailStore';
+import { VictoryChart, VictoryBar, VictoryLabel } from 'victory';
 import image from 'assets/placement.png';
 
 const TabPane = Tabs.TabPane;
@@ -46,14 +47,12 @@ class MeetDetail extends React.Component<Props> {
     this.store.getMeet();
   }
 
-  onTabChange = () => {};
-
   renderMeetContent = () => {
     if (this.store.loading) {
       return <div>loading</div>;
     }
     return (
-      <StyledTabs defaultActiveKey="mens" onChange={this.onTabChange}>
+      <StyledTabs defaultActiveKey="mens" onChange={this.store.changeGender}>
         <TabPane tab="Mens" key="mens">
           <FlexTable
             bordered
@@ -83,18 +82,39 @@ class MeetDetail extends React.Component<Props> {
   render() {
     return (
       <Flex auto>
-        <Box w={[1, 3 / 4, 3 / 4]}>
+        <Box w={[1, 1, 1 / 2]}>
           {this.renderMeetContent()}
         </Box>
-        <Box w={[1, 1 / 4, 1 / 4]}>
-          <AddOrInfo auto align="center" justify="center">
-            <img src={image} alt="placements" width="250" />
-          </AddOrInfo>
+        <Box w={[1, 1, 1 / 2]}>
+          {!this.store.loading &&
+            <AddOrInfo auto column align="center" justify="center" m={3}>
+              <ChartTitle>Average Placements by Region</ChartTitle>
+              <StyledVictoryChart>
+                <VictoryBar
+                  data={this.store.placementPerRegion}
+                  horizontal
+                  labelComponent={
+                    <VictoryLabel dx={30} style={{ fontSize: 10 }} />
+                  }
+                  x="region"
+                  y="placement"
+                />
+              </StyledVictoryChart>
+            </AddOrInfo>}
         </Box>
       </Flex>
     );
   }
 }
+
+const StyledVictoryChart = styled(VictoryChart)`
+  padding-left: 50px !important;
+`;
+
+const ChartTitle = styled.h2`
+  margin-top: 10px;
+  margin-bottom: -20px;
+`;
 
 const StyledTabs = styled(Tabs)`
   .ant-tabs-bar {
@@ -103,12 +123,10 @@ const StyledTabs = styled(Tabs)`
 `;
 
 const AddOrInfo = styled(Flex)`
-  margin: 30px 30px 30px 0;
-  height: 85%;
   background: #fff;
   border: 1px solid lightgray;
   border-radius: 4px;
-  font-size: 20px;
+  padding-left: 20px;
 `;
 
 const FlexTable = styled(Table)`

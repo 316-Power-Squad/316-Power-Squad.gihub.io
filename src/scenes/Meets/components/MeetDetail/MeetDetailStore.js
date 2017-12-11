@@ -5,6 +5,7 @@ class MeetDetailStore {
   id: string;
   @observable meet: Array<Object>;
   @observable loading: boolean = true;
+  @observable activeGender: string = 'mens';
 
   @computed
   get mensResults(): Object {
@@ -21,6 +22,45 @@ class MeetDetailStore {
       .map((team, i) => ({ ...team, key: i }))
       .sort((a, b) => a.placement - b.placement);
   }
+
+  @computed
+  get teamsPerRegion() {
+    const results =
+      this.activeGender === 'mens' ? this.mensResults : this.womensResults;
+    let data = {};
+    for (const team of results) {
+      if (!data[team.region]) {
+        data[team.region] = {
+          numTeams: 1,
+          placementSum: team.placement
+        };
+      } else {
+        data[team.region] = {
+          numTeams: data[team.region].numTeams + 1,
+          placementSum: data[team.region].placementSum + team.placement
+        };
+      }
+    }
+    return data;
+  }
+
+  @computed
+  get placementPerRegion() {
+    let data = [];
+    for (const key of Object.keys(this.teamsPerRegion)) {
+      const { numTeams, placementSum } = this.teamsPerRegion[key];
+      data.push({
+        region: key,
+        placement: placementSum / numTeams
+      });
+    }
+    return data.sort((a, b) => a.placement - b.placement);
+  }
+
+  @action
+  changeGender = (gender: string) => {
+    this.activeGender = gender;
+  };
 
   @action
   getMeet = async (): Promise<*> => {
