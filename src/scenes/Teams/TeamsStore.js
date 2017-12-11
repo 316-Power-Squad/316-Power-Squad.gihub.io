@@ -15,7 +15,7 @@ class TeamsStore {
 
   @computed
   get visibleTeams(): Array<Object> {
-    return this.teams.filter(team => team.name.includes(this.queryString));
+    return this.teams.filter(team => team.name.toLowerCase().includes(this.queryString.toLowerCase()));
   }
 
   @action
