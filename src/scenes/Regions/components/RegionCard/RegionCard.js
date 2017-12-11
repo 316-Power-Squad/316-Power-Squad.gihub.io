@@ -38,7 +38,7 @@ class RegionCard extends React.Component<Props> {
     return (
       <StyledCard title={<RegionTitle region={region} />} className={className}>
         {`This region currently has ${this
-          .mensQalifyingCount} teamns qualifying for men's nationals and ${this
+          .mensQalifyingCount} teams qualifying for men's nationals and ${this
           .womensQalifyingCount} teams qualifying for women's nationals.`}
       </StyledCard>
     );
