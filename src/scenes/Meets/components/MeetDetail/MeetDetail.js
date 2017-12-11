@@ -83,7 +83,9 @@ class MeetDetail extends React.Component<Props> {
   render() {
     return (
       <Flex auto>
-        <Box w={[1, 3 / 4, 3 / 4]}>{this.renderMeetContent()}</Box>
+        <Box w={[1, 3 / 4, 3 / 4]}>
+          {this.renderMeetContent()}
+        </Box>
         <Box w={[1, 1 / 4, 1 / 4]}>
           <AddOrInfo auto align="center" justify="center">
             <img src={image} alt="placements" width="250" />

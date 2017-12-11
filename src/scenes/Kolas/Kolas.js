@@ -76,7 +76,7 @@ class Kolas extends React.Component<Props> {
               <Option value="womens">Women's</Option>
             </PaddedSelect>
           </InputRow>
-          <div style={{ background: '#ECECEC', padding: '30px' }}>
+          <CardsContainer>
             <Row gutter={16}>
               <Col span={8}>
                 <Card
@@ -106,7 +106,7 @@ class Kolas extends React.Component<Props> {
                 </Card>
               </Col>
             </Row>
-          </div>
+          </CardsContainer>
           <FlexTable
             bordered
             title={() => 'Predicted Bids'}
@@ -121,6 +121,12 @@ class Kolas extends React.Component<Props> {
     );
   }
 }
+
+const CardsContainer = styled.div`
+  background: #ececec;
+  padding: 30px;
+  margin-bottom: 10px;
+`;
 
 const PaddedSelect = styled(Select)`
   margin-right: 10px;
