@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Icon } from 'antd';
-import styled from 'styled-components';
 
 type Props = {
   onChange: Function,
@@ -21,7 +20,7 @@ class Input extends React.Component<Props> {
           <span className="ant-input-prefix">
             <Icon type={icon} style={{ fontSize: 13 }} />
           </span>}
-        <StyledInput
+        <input
           {...other}
           value={value}
           onChange={this.handleChange}
@@ -31,7 +30,5 @@ class Input extends React.Component<Props> {
     );
   }
 }
-
-const StyledInput = styled.input`padding: 15px 25px !important;`;
 
 export default Input;
