@@ -11,7 +11,7 @@ import UserStore from 'stores/UserStore';
 import UiStore from 'stores/UiStore';
 import SignUpStore from './SignUpStore';
 import Input from 'components/Input';
-import banner from 'assets/banner.jpg';
+import banner from 'assets/banner2.jpg';
 
 type Props = {
   user: UserStore,
@@ -122,10 +122,6 @@ const SignUpForm = styled.div`
   padding: 25px;
   width: 300px;
   text-align: center;
-  ${({ mobile }) =>
-    mobile &&
-    `
-  `};
 `;
 
 const FullHeight = styled(Flex)`
@@ -133,6 +129,8 @@ const FullHeight = styled(Flex)`
 `;
 
 const Banner = styled(Flex)`
+  position: relative;
+  overflow: hidden;
   background-color: ${colors.teal};
 `;
 
